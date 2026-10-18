@@ -1,5 +1,7 @@
 # Stampback
 
+**Repo:** https://github.com/fitzyracing1/stampback
+
 **A stamp that writes back.** Stampback puts a scannable QR stamp on real mail. When someone scans it, they tap a reply (got it, opened and read, I'll take care of it, sending it back) and the reply shows up on your desk. If the deadline passes with no scan, the desk says **not received**. Late replies still arrive.
 
 ![Desk](docs/screenshot.png)
