@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tell the sender · Stampback</title>
+<link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="scan" id="app">
+  <img src="/icon.svg" width="56" height="56" alt="">
+  <h1>Did this reach you?</h1>
+  <p>The sender put a Stampback stamp on this mail. One tap tells them it arrived. Nothing else is shared.</p>
+  <div class="choices" id="choices"></div>
+  <label style="text-align:left">Optional note to the sender<input id="note" maxlength="280" placeholder="Thanks!"></label>
+  <p id="msg" class="err"></p>
+</main>
+<script type="module" src="/scan.js"></script>
+</body>
+</html>

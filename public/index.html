@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stampback · QR stamps that tell you your mail arrived</title>
+<meta name="description" content="Put a scannable stamp on real mail. The recipient taps got it, read, handling it or sending it back, and the reply lands on your desk. No scan by the deadline means not received.">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="V6vcuK3GPyoYOaEMai4qHA1-TxKsL6ql11XR8qoOnX4">
+<meta property="og:title" content="Stampback">
+<meta property="og:description" content="QR stamps for real mail: know it arrived, or know it didn't.">
+<link rel="icon" href="/icon.svg">
+<link rel="sitemap" href="/sitemap.xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="bar"><div class="wrap"><a class="logo" href="/"><img src="/icon.svg" width="30" height="30" alt="">Stampback</a><span id="myDesk"></span></div></header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <h1>A stamp that writes back.</h1>
+      <p>Stampback puts a scannable stamp on real mail and sends the reply back to your desk. When someone scans it they tap <b>got it</b>, <b>opened and read</b>, <b>I'll take care of it</b> or <b>sending it back</b>. If nobody scans it before your deadline, the desk says <b>not received</b>.</p>
+      <p><button id="start" class="btn red">Start a desk</button></p>
+      <p style="font-size:14px;color:#6b6f7b">No account. Stampback does not email anyone: replies stay on your desk.</p>
+    </div>
+    <div class="envelope" aria-hidden="true"><div class="stamp"><div id="demoQr"></div>scan to reply</div><div class="addr"><i></i><i style="width:80%"></i><i style="width:60%"></i></div></div>
+  </section>
+  <section class="steps">
+    <div class="step"><b>1 · Start a desk</b><span>Your desk is a private link. Open it on your phone with “Copy desk link”.</span></div>
+    <div class="step"><b>2 · Name the piece</b><span>A private nickname (“Mom's birthday card”), never an address. Pick 3, 7, 14 or 30 days.</span></div>
+    <div class="step"><b>3 · Print &amp; stick</b><span>Print one stamp or a sheet of up to eight. Stick the QR on the envelope.</span></div>
+    <div class="step"><b>4 · Hear back</b><span>The reply shows up on your desk. “Alert me” notifies you while it's open.</span></div>
+  </section>
+</main>
+<footer>Stampback · replies stay on the desk · <a href="/llms.txt">llms.txt</a></footer>
+<script src="/vendor/qrcode.js"></script>
+<script type="module">
+import { renderQr } from '/qr.js';
+renderQr(document.getElementById('demoQr'), location.origin + '/', 3);
+const saved = JSON.parse(localStorage.getItem('stampback.desks') || '[]');
+if (saved.length) document.getElementById('myDesk').innerHTML = `<a class="btn ghost" href="/desk.html#${saved[0]}">Open my desk</a>`;
+document.getElementById('start').onclick = async () => {
+  const r = await fetch('/api/desks', { method: 'POST' }); const d = await r.json();
+  const ref = `${d.id}.${d.key}`;
+  localStorage.setItem('stampback.desks', JSON.stringify([ref, ...saved.filter((x) => x !== ref)]));
+  location.href = `/desk.html#${ref}`;
+};
+</script>
+</body>
+</html>

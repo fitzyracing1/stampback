@@ -1,0 +1,13 @@
+{
+  "name": "stampback",
+  "version": "1.0.0",
+  "description": "QR stamps for real mail: recipients scan and tap got it / read / handling / returning; no scan by the deadline means not received.",
+  "type": "module",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/"
+  },
+  "engines": { "node": ">=18" }
+}

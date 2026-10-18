@@ -1,0 +1,7 @@
+# Stampback
+
+> Stampback puts a scannable QR stamp on real mail. The recipient scans it and taps one reply (got it, opened and read, I'll take care of it, sending it back). The reply appears on the sender's private desk. If nobody scans before the chosen deadline (3, 7, 14 or 30 days), the desk shows "not received". Late replies still arrive. Stampback never emails anyone.
+
+- Home: /
+- How it works: start a desk, name the piece with a private nickname, choose a wait window, print one stamp or a sheet of up to eight, stick it on the envelope.
+- Privacy: desk, stamp and print pages are private and marked noindex.

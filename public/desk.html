@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Desk · Stampback</title>
+<link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="bar"><div class="wrap"><a class="logo" href="/"><img src="/icon.svg" width="30" height="30" alt="">Stampback desk</a>
+  <div class="row"><button id="copy" class="btn ghost">Copy desk link</button><button id="alert" class="btn ghost">Alert me</button></div></div></header>
+<main class="wrap desk">
+  <section class="panel">
+    <h2>New piece</h2>
+    <form class="new" id="new">
+      <label>Nickname (private)<input name="name" placeholder="Mom's birthday card" maxlength="60" required></label>
+      <label>Wait for a scan<div class="windows">
+        <label><input type="radio" name="days" value="3"><span>3 days</span></label>
+        <label><input type="radio" name="days" value="7" checked><span>7 days</span></label>
+        <label><input type="radio" name="days" value="14"><span>14 days</span></label>
+        <label><input type="radio" name="days" value="30"><span>30 days</span></label></div></label>
+      <button class="btn red">Add piece</button>
+    </form>
+    <p class="err" id="err"></p>
+  </section>
+  <section class="panel">
+    <div class="row"><h2 style="margin:0">Pieces</h2><div id="sum" class="sum"></div><span class="grow"></span>
+      <button id="print" class="btn" disabled>Print selected (<span id="nsel">0</span>/8)</button></div>
+    <div id="pieces" class="pieces" style="margin-top:14px"></div>
+  </section>
+</main>
+<div id="toast" class="toast"></div>
+<footer>Stampback does not email anyone. Replies stay on this desk. Keep the desk link private: anyone with it can see your pieces.</footer>
+<script src="/vendor/qrcode.js"></script>
+<script type="module" src="/desk.js"></script>
+</body>
+</html>

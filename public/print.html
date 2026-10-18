@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Print stamps · Stampback</title>
+<link rel="icon" href="/icon.svg"><link rel="stylesheet" href="/style.css">
+<style>
+.sheet{display:grid;grid-template-columns:repeat(2,1fr);gap:8mm;padding:10mm;background:#fff;max-width:210mm;margin:20px auto;box-shadow:0 6px 30px #0002}
+.cell{border:1px dashed #bbb;padding:6mm;display:flex;gap:5mm;align-items:center;break-inside:avoid}
+.cell .stamp svg{width:32mm;height:32mm}.cell p{margin:0;font-size:12px;color:#333}.cell b{font-size:14px;display:block;margin-bottom:4px}
+.bar2{text-align:center;margin:16px}
+@media print{.bar2{display:none}body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:none}}
+</style>
+</head>
+<body>
+<div class="bar2"><button class="btn red" onclick="print()">Print this sheet</button> <span style="color:#6b6f7b">Nicknames are not printed. Print at 100%.</span></div>
+<div class="sheet" id="sheet"></div>
+<script src="/vendor/qrcode.js"></script>
+<script type="module">
+import { qrSvg } from '/qr.js';
+const [id, key, ids] = location.hash.slice(1).split('.');
+const desk = await (await fetch(`/api/desks/${id}?key=${key}`)).json();
+const want = (ids || '').split(',').slice(0, 8);
+const pieces = desk.pieces.filter((p) => want.includes(p.id));
+document.getElementById('sheet').innerHTML = pieces.map((p) => `<div class="cell"><div class="stamp">${qrSvg(p.url, 4, 1)}scan to reply</div>
+  <p><b>Got this letter?</b>Scan the code and tap one button so the sender knows it arrived.<br><small>${p.url.replace(/^https?:\/\//, '')}</small></p></div>`).join('');
+</script>
+</body>
+</html>
